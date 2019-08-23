@@ -2,10 +2,10 @@
   <b-row>
     <b-col>
       <b-card-group deck>
-      <MediaCard
-        v-for="(item, index) in mediaData.results" :key="index"
-        :item=item
-      />
+        <MediaCard
+          v-for="(item, index) in mediaData.results" :key="index"
+          :item=item
+        />
       </b-card-group>
     </b-col>
   </b-row>

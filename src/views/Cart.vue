@@ -1,6 +1,8 @@
 <template>
-  <div class="home">
-    Cart
+  <div class="cart">
+    <div v-for="(item, index) in $store.state.cartItems" :key="index">
+        {{item.id}} - {{item.cartItem.trackName}} - {{item.amount}}
+    </div>
   </div>
 </template>
 

@@ -1,27 +1,21 @@
 <template>
   <b-row>
-    <b-col v-for="(item, index) in mediaData.results" :key="index">
-      <b-card
-        :title="item.trackName"
-        :img-src="largeImage(item.artworkUrl100)"
-        img-alt="Image"
-        img-top
-        tag="article"
-        style="max-width: 300px; min-width: 200px"
-        class="mb-2"
-      >
-        <b-card-text>
-          {{item.trackPrice}}
-        </b-card-text>
-        <b-button href="#" variant="primary">Add to cart</b-button>
-      </b-card>
+    <b-col>
+      <b-card-group deck>
+      <MediaCard
+        v-for="(item, index) in mediaData.results" :key="index"
+        :item=item
+      />
+      </b-card-group>
     </b-col>
   </b-row>
 </template>
 
 <script>
 import axios from 'axios'
+import MediaCard from './MediaCard'
 export default {
+  name: 'mediaList',
   data() {
     return {
       mediaData: [],
@@ -38,10 +32,8 @@ export default {
       this.error = e
     })
   },
-  methods: {
-    largeImage (url) {
-      return url.replace('100x100', '300x300')
-    }
+  components: {
+    MediaCard
   }
 }
 </script>

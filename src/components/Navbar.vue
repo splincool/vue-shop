@@ -8,12 +8,7 @@
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav>
           <b-nav-item href="#">
-            <b-button class="cart-btn" to="/cart" variant="primary">
-              <span class="mdi mdi-cart"></span>
-              <b-badge variant="light">9</b-badge>
-            </b-button>
-            <!-- <router-link to="/cart">
-            </router-link> -->
+            <CartButton />
           </b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
@@ -22,8 +17,12 @@
 </template>
 
 <script>
+import CartButton from './CartButton.vue'
 export default {
-  name: 'navbar'
+  name: 'navbar',
+  components: {
+    CartButton
+  }
 }
 </script>
 

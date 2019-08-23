@@ -1,17 +1,22 @@
 <template>
-  <div>
-    <div v-for="(item, index) in mediaData.results" :key="index"
-      style="display: flex"
-    >
-      <img :src="item.artworkUrl100" />
-      {{item.trackName}}
-      {{item.trackPrice}}
-      <!-- <video width="320" height="240" controls>
-        <source :src="item.previewUrl" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        Your browser does not support the video tag.
-      </video> -->
-    </div>
-  </div>
+  <b-row>
+    <b-col v-for="(item, index) in mediaData.results" :key="index">
+      <b-card
+        :title="item.trackName"
+        :img-src="largeImage(item.artworkUrl100)"
+        img-alt="Image"
+        img-top
+        tag="article"
+        style="max-width: 300px; min-width: 200px"
+        class="mb-2"
+      >
+        <b-card-text>
+          {{item.trackPrice}}
+        </b-card-text>
+        <b-button href="#" variant="primary">Add to cart</b-button>
+      </b-card>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -24,7 +29,7 @@ export default {
     }
   },
   created() {
-    axios.get('https://itunes.apple.com/search?term=bond&media=movie&limit=5&country-uk')
+    axios.get('https://itunes.apple.com/search?term=bond&media=movie&limit=25&country-uk')
     .then(response => {
       this.mediaData = response.data
       console.log(this.mediaData)
@@ -32,6 +37,11 @@ export default {
     .catch(e => {
       this.error = e
     })
+  },
+  methods: {
+    largeImage (url) {
+      return url.replace('100x100', '300x300')
+    }
   }
 }
 </script>

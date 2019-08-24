@@ -1,6 +1,6 @@
 <template>
-  <b-button class="cart-btn" to="/cart" variant="primary">
-    <span class="mdi mdi-cart"></span>
+  <b-button class="cart-btn d-flex align-items-start" to="/cart" variant="outline-light">
+    <span class="mdi mdi-cart mdi-24px "></span>
     <b-badge variant="light">{{cartItemsCount}}</b-badge>
   </b-button>
 </template>

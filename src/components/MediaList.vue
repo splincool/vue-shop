@@ -1,7 +1,20 @@
 <template>
-  <b-row>
+  <b-row class="flex-column">
     <b-col>
-      <b-card-group deck>
+      <b-input-group class="mt-3 mb-3">
+        <b-form-input @keyup.enter="doFetch" v-model="term"></b-form-input>
+        <b-input-group-append>
+          <b-button @click="doFetch" variant="info">
+            Seacrh
+          </b-button>
+        </b-input-group-append>
+      </b-input-group>
+    </b-col>
+    <b-col>
+      <div class="text-center" v-if="$store.state.isLoading">
+        <b-spinner variant="primary" label="Text Centered"></b-spinner>
+      </div>
+      <b-card-group deck v-else>
         <MediaCard
           v-for="(item, index) in mediaData.results" :key="index"
           :item=item
@@ -19,18 +32,27 @@ export default {
   data() {
     return {
       mediaData: [],
-      error: null
+      error: null,
+      term: 'sherlock'
     }
   },
-  created() {
-    axios.get('https://itunes.apple.com/search?term=bond&media=movie&limit=25&country-uk')
-    .then(response => {
-      this.mediaData = response.data
-      console.log(this.mediaData)
-    })
-    .catch(e => {
-      this.error = e
-    })
+  created () {
+    this.doFetch()
+  },
+  methods: {
+    doFetch () {
+      this.$store.commit('setLoading', true)
+      axios
+      .get(`https://itunes.apple.com/search?term=${this.term}&media=movie&limit=18`)
+      .then(response => {
+        this.mediaData = response.data
+        console.log(this.mediaData)
+        this.$store.commit('setLoading', false)
+      })
+      .catch(e => {
+        this.error = e
+      })
+    }
   },
   components: {
     MediaCard

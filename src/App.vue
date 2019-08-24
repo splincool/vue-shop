@@ -18,6 +18,9 @@ import Navbar from '@/components/Navbar.vue'
 
 export default {
   name: 'app',
+  created () {
+    this.$store.dispatch('downloadFromLocalStorage')
+  },
   components: {
     Navbar
   }

@@ -15,10 +15,12 @@ export default new Vuex.Store({
         state.cartItems.unshift({
           id: payload.trackId,
           cartItem: payload,
-          amount: 1
+          amount: 1,
+          timeAdded: new Date()
         })
       } else {
         state.cartItems[cartItemIndex].amount += 1
+        state.cartItems[cartItemIndex].timeAdded = new Date()
       }
     }
   },
@@ -29,6 +31,13 @@ export default new Vuex.Store({
         count += i.amount
       }
       return count
+    },
+    cartItems: state => {
+      return state.cartItems.sort((a,b) => {
+        var dateA = new Date(a.timeAdded).getTime();
+        var dateB = new Date(b.timeAdded).getTime();
+        return dateB > dateA ? 1 : -1; 
+      })
     }
   },
   actions: {

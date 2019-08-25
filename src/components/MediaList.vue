@@ -2,7 +2,9 @@
   <b-row class="flex-column">
     <b-col>
       <div class="d-flex mb-3">
-        <b-form-input v-model="searchValue" placeholder="type for searching..."></b-form-input>
+        <b-form-input v-model="searchValue" 
+          placeholder="type for searching... (for example: harry)">
+        </b-form-input>
         <span class="mdi mdi-24px mdi-magnify search-icon"></span>
       </div>
     </b-col>

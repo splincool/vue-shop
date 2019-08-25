@@ -23,8 +23,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CartHeader from '@/components/CartHeader.vue'
-import CartBody from '@/components/CartBody.vue'
+import CartHeader from '@/components/Cart/CartHeader.vue'
+import CartBody from '@/components/Cart/CartBody.vue'
 export default {
   name: 'cart',
   computed: {

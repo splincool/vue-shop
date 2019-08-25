@@ -13,16 +13,18 @@
         :key="index"
         class="py-4 align-items-center"
       >
-        <b-col sm="1"><img :src="item.cartItemData.artworkUrl100"></b-col>
-        <b-col sm="5">{{item.cartItemData.trackName}}</b-col>
-        <b-col sm="1">        
+        <b-col sm="1" class="movie-cover">
+          <img :src="item.cartItemData.artworkUrl100">
+        </b-col>
+        <b-col sm="5" class="movie-name">{{item.cartItemData.trackName}}</b-col>
+        <b-col sm="1" class="movie-amount">        
           <input type="number"
             class="amount-input text-center" 
             :value="item.amount" 
             @input="updateAmount($event, item.cartItemData.trackId)" 
           />
         </b-col>
-        <b-col sm="2" class="text-center">x ${{item.cartItemData.trackPrice}}</b-col>
+        <b-col sm="2" class="text-center">x ${{(item.cartItemData.trackPrice).toFixed(2)}}</b-col>
         <b-col sm="2" class="text-center">${{(item.cartItemData.trackPrice * item.amount).toFixed(2)}}</b-col>
         <b-col sm="1" class="text-center">
           <DeleteItemButton :item="item"/>
@@ -31,7 +33,7 @@
 
       <!-- Total price section -->
       <b-row class="font-weight-bold mb-3">
-        <b-col sm="9" class="text-right">Total:</b-col>
+        <b-col sm="9" class="text-right total-price-title">Total:</b-col>
         <b-col sm="2" class="text-center">
           ${{totalCartPrice}}
         </b-col>
@@ -43,8 +45,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ClearAllButton from '@/components/ClearAllButton.vue'
-import DeleteItemButton from '@/components/DeleteItemButton.vue'
+import ClearAllButton from '@/components/Cart/ClearAllButton.vue'
+import DeleteItemButton from '@/components/Cart/DeleteItemButton.vue'
 export default {
   name: 'cartBody',
   computed: {
@@ -71,5 +73,19 @@ export default {
 <style scoped>
   .amount-input {
     width: 60px;
+  }
+  @media only screen and (max-width: 1000px) {
+    .movie-cover,
+    .movie-name,
+    .movie-amount {
+      text-align: center;
+      width: 100%;
+    }
+    .total-price-title {
+      text-align: center !important;
+    }
+    .amount-input {
+      border: 1px solid rgb(238, 238, 238);
+    }
   }
 </style>

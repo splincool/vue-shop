@@ -16,3 +16,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  @media only screen and (max-width: 1000px) {
+    .cart-btn.btn-outline-light:hover {
+      color: #f8f9fa;
+      background-color: transparent;
+    }
+  }
+</style>

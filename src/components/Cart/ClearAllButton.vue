@@ -1,6 +1,9 @@
 <template>
-  <div class="d-flex justify-content-end clear-all">
-    <span @click="clearAll">Clear all</span>
+  <div 
+    @click="clearAll" 
+    class="d-flex justify-content-end clear-all"
+  >
+    <span>Clear all</span>
     <span class="mdi mdi-close mdi-18px"></span>
   </div>
 </template>

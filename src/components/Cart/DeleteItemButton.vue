@@ -1,8 +1,9 @@
 <template>
   <b-button 
     @click="deleteItem(item.cartItemData.trackId)" 
-    variant="outline-secondary">
-      <span class="mdi mdi-trash-can-outline"></span>
+    variant="outline-secondary"
+  >
+    <span class="mdi mdi-trash-can-outline"></span>
   </b-button>
 </template>
 

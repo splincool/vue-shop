@@ -1,15 +1,5 @@
 <template>
-  <b-row class="flex-column">
-    <b-col>
-      <b-input-group class="mt-3 mb-3">
-        <b-form-input @keyup.enter="doFetch" v-model="term"></b-form-input>
-        <b-input-group-append>
-          <b-button @click="doFetch" variant="info">
-            Seacrh
-          </b-button>
-        </b-input-group-append>
-      </b-input-group>
-    </b-col>
+  <b-row>
     <b-col>
       <div class="text-center" v-if="$store.state.isLoading">
         <b-spinner variant="primary" label="Text Centered"></b-spinner>
@@ -25,7 +15,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import MediaCard from './MediaCard'
 export default {
   name: 'mediaList',
@@ -37,22 +26,8 @@ export default {
     }
   },
   created () {
-    this.doFetch()
-  },
-  methods: {
-    doFetch () {
-      this.$store.commit('setLoading', true)
-      axios
-      .get(`https://itunes.apple.com/search?term=${this.term}&media=movie&limit=18`)
-      .then(response => {
-        this.mediaData = response.data
-        console.log(this.mediaData)
-        this.$store.commit('setLoading', false)
-      })
-      .catch(e => {
-        this.error = e
-      })
-    }
+    this.mediaData = require('../data.json')
+    this.$store.commit('setLoading', false)
   },
   components: {
     MediaCard

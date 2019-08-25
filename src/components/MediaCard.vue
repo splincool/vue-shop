@@ -1,6 +1,6 @@
 <template>
   <b-card
-    :img-src="item.artworkUrl100"
+    :img-src="item.artworkUrl200"
     :img-alt="item.trackName"
     img-top
     tag="article"
@@ -9,7 +9,7 @@
   >
     <b-card-text>{{item.trackName}}</b-card-text>
     <div class="d-flex justify-content-between" slot="footer">
-      <b-card-text class="price align-self-center">${{item.trackPrice}}</b-card-text>
+      <b-card-text class="price align-self-center">${{(item.trackPrice).toFixed(2)}}</b-card-text>
       <b-button href="#" variant="primary" @click="addToCart">
         <span class="mdi mdi-cart-plus"></span>
       </b-button>
@@ -24,9 +24,6 @@ export default {
     item: Object
   },  
   methods: {
-    largeImage (url) {
-      return url.replace('100x100', '200x200')
-    },
     addToCart () {
       this.$store.commit('addToCart', this.item)
       this.$store.dispatch('saveToLocalStorage')

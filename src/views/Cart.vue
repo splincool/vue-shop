@@ -1,33 +1,20 @@
 <template>
   <b-row>
     <b-col>
-      <b-row v-for="(item, index) in sortCartItemsByDate" 
-        :key="index"
-        class="py-4 align-items-center"
-      >
-        <b-col sm="1"><img :src="item.cartItemData.artworkUrl100"></b-col>
-        <b-col sm="5">{{item.cartItemData.trackName}}</b-col>
-        <b-col sm="1">        
-          <input type="number"
-            class="amount-input text-center" 
-            :value="item.amount" 
-            @input="updateAmount($event, item.cartItemData.trackId)" 
-          />
-        </b-col>
-        <b-col sm="2" class="text-center"> x ${{item.cartItemData.trackPrice}}</b-col>
-        <b-col sm="2" class="text-center">${{(item.cartItemData.trackPrice * item.amount).toFixed(2)}}</b-col>
-        <b-col sm="1" class="text-center">
-          <b-button 
-            @click="deleteItem(item.cartItemData.trackId)" 
-            variant="outline-secondary">
-              <span class="mdi mdi-trash-can-outline"></span>
-          </b-button>
+      <!-- Cart header section -->
+      <b-row class="font-weight-bold mb-3 mt-1">
+        <b-col sm="12">
+          <CartHeader />
         </b-col>
       </b-row>
-      <b-row class="font-weight-bold mb-3">
-        <b-col sm="9" class="text-right">Total:</b-col>
-        <b-col sm="2" class="text-center">
-          ${{totalCartPrice}}
+
+      <!-- Cart data section -->
+      <CartBody v-if="cartItemsCount" />
+
+      <!-- No data message -->
+      <b-row v-else>
+        <b-col>
+          There are no items in your cart
         </b-col>
       </b-row>
     </b-col>
@@ -36,30 +23,24 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import CartHeader from '@/components/CartHeader.vue'
+import CartBody from '@/components/CartBody.vue'
 export default {
   name: 'cart',
   computed: {
     ...mapGetters([
-      'sortCartItemsByDate',
-      'totalCartPrice'
+      'cartItemsCount'
     ])
   },
-  methods: {
-    updateAmount (e, id) {
-      this.$store.commit('changeAmount', {
-        id,
-        amount: e.target.value
-      })
-    },
-    deleteItem (id) {
-      this.$store.commit('deleteFromCart', id)
-      this.$store.dispatch('saveToLocalStorage')
-    }
-  },
+  components: {
+    CartHeader,
+    CartBody
+  }
 }
 </script>
+
 <style scoped>
-  .amount-input {
-    width: 60px;
+  .cart-header {
+    border-bottom: solid thin #b3b3b3;
   }
 </style>

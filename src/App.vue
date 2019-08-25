@@ -6,7 +6,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
+      <b-col class="mb-3">
         <router-view/>
       </b-col>
     </b-row>
@@ -26,4 +26,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  body {
+    font-family: 'Lato', sans-serif;
+  }
+</style>
 

@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="info">
+  <b-navbar toggleable="lg" type="dark" variant="info" class="mb-3">
     <b-navbar-brand>
       <router-link to="/" class="logo-link">Media shop</router-link>
     </b-navbar-brand>
@@ -28,6 +28,7 @@ export default {
 
 <style scoped>
 .logo-link {
+  font-size: 26px;
   color: #fff;
   text-decoration: none;
 }

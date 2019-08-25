@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+  <b-row class="my-3">
     <b-col>
       <div class="text-center" v-if="$store.state.isLoading">
         <b-spinner variant="primary" label="Text Centered"></b-spinner>
@@ -21,8 +21,7 @@ export default {
   data() {
     return {
       mediaData: [],
-      error: null,
-      term: 'sherlock'
+      error: null
     }
   },
   created () {

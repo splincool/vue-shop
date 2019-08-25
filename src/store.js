@@ -27,10 +27,13 @@ export default new Vuex.Store({
       const cartItemIndex = state.cartItems.findIndex(item => item.id === payload.id)
       state.cartItems[cartItemIndex].amount = payload.amount
     },
-    deleteFromCart (state, payload) {
+    deleteItemFromCart (state, payload) {
       state.cartItems = state.cartItems.filter(item => {
         return item.id != payload
       })
+    },
+    deleteAllFromCart (state) {
+      state.cartItems = []
     },
     setDataFromLocalStorage (state, payload) {
       state.cartItems = payload.cartItems

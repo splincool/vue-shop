@@ -19,6 +19,7 @@
         <b-col sm="5" class="movie-name">{{item.cartItemData.trackName}}</b-col>
         <b-col sm="1" class="movie-amount">        
           <input type="number"
+            min="0"
             class="amount-input text-center" 
             :value="item.amount" 
             @input="updateAmount($event, item.cartItemData.trackId)" 
